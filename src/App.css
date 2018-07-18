@@ -1,0 +1,150 @@
+* {
+  /* colors */
+  --color-accent: #803fc2ff;
+  --color-accent-highlight: rgb(189, 142, 236);
+  --color-background: #e7e8ebff;
+  --color-navbar-background: white;
+  --color-foreground: #000000ff;
+  --color-inactive: rgb(180, 180, 180);
+  --color-shadow: rgb(0, 0, 0, 0.7);
+  /* border: red solid 1px; */
+  font-size: 14px;
+}
+
+.box {
+  margin: 20px 10vw 10vh 10vw;
+  border-radius: 10px;
+  box-shadow: 3px 3px 5px var(--color-shadow);
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  height: calc(90vh - 20px);
+  background-color: var(--color-background);
+}
+
+.navbar {
+  height: 50px;
+  padding-left: 0;
+  padding-right: auto;
+  width: 100%;
+  margin: 0;
+  background-color: var(--color-navbar-background);
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  box-shadow: 0 3px 5px -2px var(--color-shadow);
+  position: relative;
+  /* display: flex;
+  flex-direction: row;
+  justify-content: center; */
+}
+
+.navbar__tabgroup {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  height: 100%;
+}
+
+.navbar__tab {
+  flex: 0 0 auto;
+  margin: 0;
+  margin-left: 2px;
+  margin-right: 2px;
+  padding: 0 10px 0 10px;
+  background-color: var(--color-navbar-background);
+  border-radius: 0%;
+  border-width: 0 0 3px 0;
+  border-color: var(--color-inactive);
+  height: 100%;
+  font-variant: small-caps;
+  letter-spacing: 2px;
+  min-width: 100px;
+  cursor: pointer;
+  transition-duration: 0.4s;
+  background-image: radial-gradient(
+    circle at center,
+    grey 0%,
+    grey 50%,
+    transparent 50%,
+    transparent
+  );
+  background-size: 0%;
+  background-position: 50% 50%;
+  background-repeat: no-repeat;
+}
+
+.navbar__tab:hover {
+  border-color: var(--color-accent-highlight);
+}
+
+.navbar__tab:active {
+  border-color: var(--color-accent);
+  transition: all 2s;
+  background-size: 100%;
+
+  /* background-image: radial-gradient(
+    circle at center,
+    grey 0%,
+    grey 100%,
+    transparent 100%,
+    transparent
+  ); */
+}
+
+.navbar__tab--active {
+  composes: navbar__tab;
+  border-color: var(--color-accent);
+}
+
+@keyframes btn-material-press {
+  0% {
+    background-image: radial-gradient(
+      circle at center,
+      grey 0%,
+      grey 0%,
+      transparent 0%,
+      transparent
+    );
+  }
+
+  100% {
+    background-image: radial-gradient(
+      circle at center,
+      grey 0%,
+      grey 100%,
+      transparent 100%,
+      transparent
+    );
+  }
+}
+
+.navbar__home {
+  height: 100%;
+  border: none;
+  background: transparent;
+  font-size: 1.5em;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.navbar__img {
+  max-width: 100%;
+  max-height: 100%;
+}
+
+.navbar__social-link {
+  margin: 10px;
+}
+
+.about__social-links {
+  height: 30px;
+  text-align: center;
+}
+
+.about__content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: 10px;
+}
