@@ -1,65 +1,144 @@
+import * as classNames from 'classnames';
+import * as R from 'ramda';
 import * as React from 'react';
+import { connect } from 'react-redux';
+import { Route, Switch } from 'react-router';
+import { Link } from 'react-scroll';
+import { Dispatch } from 'redux';
+
 import * as style from './App.css';
+import { bio, projects, sections, socialMediaDefs } from './content';
+import { IrregularBox } from './IrregularBox';
+import { Markdown, Props as MarkdownProps } from './Markdown';
 
-import {push} from 'connected-react-router';
-import {connect} from 'react-redux';
-import {Redirect, Route, Switch} from 'react-router';
-import {Dispatch} from 'redux';
-import githubMark from './GitHub-Mark-120px-plus.png';
-import gitlabLogo from './gitlab-logo-square.png';
+type DivProps = React.DetailedHTMLProps < React.HTMLAttributes < HTMLDivElement >,
+HTMLDivElement >;
 
-enum RouteURL {
-  about = "/about",
-  projects = "/projects",
-  root = "/"
-}
-
-const goRouteCb = (dispatch : Dispatch, route : RouteURL) => () => dispatch(push(route));
+const join = (items : Array < JSX.Element | string >, connector : JSX.Element | string) => [
+  R.head(items),
+  ...R.flatten(R.map(item => [
+    connector, item
+  ], items))
+];
 
 const App = ({dispatch} : {
   dispatch: Dispatch
 }) => (
-  <div className={style.box}>
-    <Navbar/>
-    <Switch>
-      <Route exact={true} path={RouteURL.projects} component={Projects}/>
-      <Route exact={true} path={RouteURL.about} component={About}/>
-      <Route exact={true} path={RouteURL.root}>
-        <Redirect to={RouteURL.about}/>
-      </Route>
-    </Switch>
+  <div className={style.root}>
+    <div className={style.header}>
+      tom koter
+    </div>
+    <div className={style.bio}>
+      {/* short bio */}
+      {join(bio, < b > | </b>
+      )}
+    </div>
+    <div className={classNames(style.buttonGroup, style.socialMedia)}>
+      {/* social media links */}
+      {socialMediaDefs.map((props, i) => <SocialMediaButton {...props} key={i}/>)}
+    </div>
+    <div className={classNames(style.buttonGroup, style.sections)}>
+      {/* sections */}
+      {sections.map((props, i) => <SectionButton key={i} {...props}/>)}
+    </div>
+    <div className={style.currentSection} id="current-section">
+      {/* current section */}
+      <Switch>
+        {/* currently only one section -- projects */}
+        <Route path="/" component={Projects}/>
+      </Switch>
+    </div>
   </div>
+
 );
 export default connect(undefined, dispatch => ({dispatch}))(App);
+interface ISocialMediaButtonProps {
+  image : any;
+  link : string;
+}
+const SocialMediaButton = (props : ISocialMediaButtonProps) => (
+  <a href={props.link} className={style.socialMediaButton}>
+    <img src={props.image} className={style.socialMediaButton}/>
+  </a>
+);
 
-const Navbar = connect(undefined, dispatch => ({
-  goHome: goRouteCb(dispatch, RouteURL.about),
-  goProjects: goRouteCb(dispatch, RouteURL.projects)
-}))(({goHome, goProjects}) => (
-
-  <nav className={style.navbar}>
-    <div className={style.navbarTabgroup}>
-      <button className={style.navbarTab} onClick={goHome}>about</button>
-      <button className={style.navbarTab} onClick={goProjects}>
-        projects
-      </button>
-    </div>
-    <button onClick={goHome} className={style.navbarHome}>@kotertom</button >
-
-  </nav>
-));
-
-const About = () => (
-  <div className={style.aboutContent}>
-    <div className={style.aboutSocialLinks}>
-      <a href="https://www.github.com/kotertom " className={style.navbarSocialLink}>
-        < img src={githubMark} className={style.navbarImg}/>
-      </a>
-      < a href="https://www.gitlab.com/kotertom" className={style.navbarSocialLink}>
-        <img src={gitlabLogo} className={style.navbarImg}/>
-      </a>
-    </div>
+interface ISectionButtonProps {
+  text : string;
+}
+const SectionButton = (props : ISectionButtonProps) => (
+  <Link to="current-section" smooth={true}>
+    <button className={style.sectionsButton}>{props.text}</button>
+  </Link>
+);
+const Projects = () => (
+  <div className={style.projects}>
+    <div
+      className={style.vdots}
+      style={{
+      height: '10vh',
+      marginBottom: '3vh',
+      marginTop: '3vh'
+    }}/> {projects.map((proj, i) => (
+      <IrregularBox
+        irregularityHeight="50px"
+        key={i}
+        className={style.projectShowcase}><ProjectShowcase {...proj}/></IrregularBox>
+    ))}
   </div>
 );
 
-const Projects = () => (<div/>);
+interface YouTube {
+  type : 'youtube';
+  id : string;
+}
+
+interface Image {
+  type : 'image';
+  src : string;
+  altText : string;
+}
+
+type PromoMediaType = YouTube | Image;
+
+interface PromoMediaProps {
+  media : PromoMediaType;
+  markdown
+    ?
+    : MarkdownProps;
+}
+const PromoMedia = ({
+  media,
+  markdown = {}
+} : PromoMediaProps) => {
+  switch (media.type) {
+    case 'youtube':
+      return <Markdown {...markdown} source={`@[youtube](${media.id})`}/>;
+    case 'image':
+      return <Markdown {...markdown} source={`![${media.altText}](${media.src})`}/>;
+  }
+}
+
+interface ProjectShowcaseProps extends DivProps {
+  title : string;
+  link : string;
+  description : string;
+  media : PromoMediaType;
+}
+
+const ProjectShowcase = (props : ProjectShowcaseProps) => (
+  <div className={style.projectShowcaseContentBox}>
+    <div className={style.projectShowcaseContent}>
+      {/* title + repo link + description */}
+      <h1 className={style.cProjectShowcaseTitle}>{props.title}</h1>
+      <a className={style.cProjectShowcaseLink} href={props.link}>{props.link}</a>
+      <p className={style.cProjectShowcaseSeparator}>***</p>
+      <Markdown
+        className={style.cProjectShowcaseDescription}
+        source={props.description}/>
+    </div>
+    <div className={style.projectShowcaseContent}>
+      {/* image / video */}
+      <PromoMedia media={props.media}/>
+    </div>
+  </div>
+);
