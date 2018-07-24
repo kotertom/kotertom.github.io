@@ -1,47 +1,48 @@
 import * as classNames from 'classnames';
 import * as R from 'ramda';
 import * as React from 'react';
-import { connect } from 'react-redux';
-import { Route, Switch } from 'react-router';
-import { Link } from 'react-scroll';
-import { Dispatch } from 'redux';
+import {connect} from 'react-redux';
+import {Route, Switch} from 'react-router';
+import {Link} from 'react-scroll';
+import {Dispatch} from 'redux';
 
-import * as style from './App.css';
-import { bio, projects, sections, socialMediaDefs } from './content';
-import { IrregularBox } from './IrregularBox';
-import { Markdown, Props as MarkdownProps } from './Markdown';
+import * as style from './App.scss';
+import {bio, projects, sections, socialMediaDefs} from './content';
+import {IrregularBox} from './IrregularBox';
+import {Markdown} from './Markdown';
 
 type DivProps = React.DetailedHTMLProps < React.HTMLAttributes < HTMLDivElement >,
 HTMLDivElement >;
 
-const join = (items : Array < JSX.Element | string >, connector : JSX.Element | string) => [
-  R.head(items),
-  ...R.flatten(R.map(item => [
-    connector, item
-  ], items))
-];
+const join = (items : Array < JSX.Element | string >, connector : JSX.Element | string) => R.tail(R.flatten(R.map(item => [
+  connector, item
+], items)));
 
 const App = ({dispatch} : {
   dispatch: Dispatch
 }) => (
-  <div className={style.root}>
-    <div className={style.header}>
+  <div className={style.lRoot}>
+    <div className={style.cHeader}>
       tom koter
     </div>
-    <div className={style.bio}>
+    <div className={style.cBio}>
       {/* short bio */}
-      {join(bio, < b > | </b>
+      {join(R.map(str => (
+        <span className={style.cBioContent}>{str.replace(/ /g, "\xa0")}</span>
+      ), bio), < b className = {
+        style.cBioSeparator
+      } > | </b>
       )}
     </div>
-    <div className={classNames(style.buttonGroup, style.socialMedia)}>
+    <div className={classNames(style.cButtonGroup, style.cSocialMedia)}>
       {/* social media links */}
       {socialMediaDefs.map((props, i) => <SocialMediaButton {...props} key={i}/>)}
     </div>
-    <div className={classNames(style.buttonGroup, style.sections)}>
+    <div className={classNames(style.cButtonGroup, style.cSections)}>
       {/* sections */}
       {sections.map((props, i) => <SectionButton key={i} {...props}/>)}
     </div>
-    <div className={style.currentSection} id="current-section">
+    <div className={style.cCurrentSection} id="current-section">
       {/* current section */}
       <Switch>
         {/* currently only one section -- projects */}
@@ -57,8 +58,8 @@ interface ISocialMediaButtonProps {
   link : string;
 }
 const SocialMediaButton = (props : ISocialMediaButtonProps) => (
-  <a href={props.link} className={style.socialMediaButton}>
-    <img src={props.image} className={style.socialMediaButton}/>
+  <a href={props.link} className={style.cSocialMediaButton}>
+    <img src={props.image} className={style.cSocialMediaButton}/>
   </a>
 );
 
@@ -67,13 +68,13 @@ interface ISectionButtonProps {
 }
 const SectionButton = (props : ISectionButtonProps) => (
   <Link to="current-section" smooth={true}>
-    <button className={style.sectionsButton}>{props.text}</button>
+    <button className={style.cSectionsButton}>{props.text}</button>
   </Link>
 );
 const Projects = () => (
-  <div className={style.projects}>
+  <div className={style.cProjects}>
     <div
-      className={style.vdots}
+      className={style.cVdots}
       style={{
       height: '10vh',
       marginBottom: '3vh',
@@ -82,7 +83,8 @@ const Projects = () => (
       <IrregularBox
         irregularityHeight="50px"
         key={i}
-        className={style.projectShowcase}><ProjectShowcase {...proj}/></IrregularBox>
+        innerClassName={style.cProjectShowcaseBackground}
+        className={style.cProjectShowcase}><ProjectShowcase {...proj}/></IrregularBox>
     ))}
   </div>
 );
@@ -100,15 +102,12 @@ interface Image {
 
 type PromoMediaType = YouTube | Image;
 
-interface PromoMediaProps {
+interface PromoMediaProps extends DivProps {
   media : PromoMediaType;
-  markdown
-    ?
-    : MarkdownProps;
 }
 const PromoMedia = ({
   media,
-  markdown = {}
+  ...markdown
 } : PromoMediaProps) => {
   switch (media.type) {
     case 'youtube':
@@ -126,19 +125,20 @@ interface ProjectShowcaseProps extends DivProps {
 }
 
 const ProjectShowcase = (props : ProjectShowcaseProps) => (
-  <div className={style.projectShowcaseContentBox}>
-    <div className={style.projectShowcaseContent}>
+  <div className={style.cProjectShowcaseContentBox}>
+    <div className={style.cProjectShowcaseContent}>
       {/* title + repo link + description */}
       <h1 className={style.cProjectShowcaseTitle}>{props.title}</h1>
       <a className={style.cProjectShowcaseLink} href={props.link}>{props.link}</a>
       <p className={style.cProjectShowcaseSeparator}>***</p>
-      <Markdown
+      <p className={style.cProjectShowcaseDescription}>{props.description}</p>
+      {/* <Markdown
         className={style.cProjectShowcaseDescription}
-        source={props.description}/>
+        source={props.description}/> */}
     </div>
-    <div className={style.projectShowcaseContent}>
+    <div className={style.cProjectShowcaseContent}>
       {/* image / video */}
-      <PromoMedia media={props.media}/>
+      <PromoMedia media={props.media} className={style.cProjectShowcaseLink}/>
     </div>
   </div>
 );

@@ -1,12 +1,14 @@
-import { Color } from 'csstype';
+import {Color} from 'csstype';
 import * as React from 'react';
 
 export interface IrregularBoxProps extends React.DetailedHTMLProps < React.HTMLAttributes < HTMLDivElement >,
 HTMLDivElement > {
     irregularityHeight: any;
+    innerClassName: string;
 }
 export const IrregularBox = ({
     irregularityHeight,
+    innerClassName,
     ...props
 } : IrregularBoxProps) => (
     <div {...props}>
@@ -18,14 +20,9 @@ export const IrregularBox = ({
             style={{
             marginBottom: '-1px'
         }}>
-            <RandomTriangle
-                from={0.1}
-                to={0.3}
-                color={props.style && props.style.backgroundColor || 'black'}/>
+            <RandomTriangle from={0.1} to={0.3} className={innerClassName}/>
         </svg>
-        <div
-            style={{
-            backgroundColor: props.style && props.style.backgroundColor || 'black',
+        <div className={innerClassName} style={{
             width: '100%'
         }}>
             {props.children}
@@ -38,36 +35,29 @@ export const IrregularBox = ({
             transform: 'scaleY(-1)'
         }}
             preserveAspectRatio="none">
-            <RandomTriangle
-                from={0.1}
-                to={0.3}
-                color={props.style && props.style.backgroundColor || 'black'}/>
+            <RandomTriangle from={0.1} to={0.3} className={innerClassName}/>
         </svg>
     </div>
 );
 
-const RandomLeftTriangle = ({from, to, color} : {
+type RandomTriangleProps = {
     from: number,
-    to: number,
-    color?: Color
-}) => <polygon
-    points={`0,1 1,1 0,${from + (to - from) * Math.random()}`}
-    color={color}
-    fill={color}/>;
+    to: number
+} & React.DetailedHTMLProps < React.SVGAttributes < SVGPolygonElement >,
+SVGPolygonElement >;
 
-const RandomRightTriangle = ({from, to, color} : {
-    from: number,
-    to: number,
-    color?: Color
-}) => <polygon
-    points={`0,1 1,1 1,${from + (to - from) * Math.random()}`}
-    color={color}
-    fill={color}/>;
+const RandomLeftTriangle = ({
+    from,
+    to,
+    ...props
+} : RandomTriangleProps) => <polygon points={`0,1 1,1 0,${from + (to - from) * Math.random()}`} {...props}/>;
 
-const RandomTriangle = (props : {
-    from: number,
-    to: number,
-    color?: Color
-}) => (Math.random() > 0.5
+const RandomRightTriangle = ({
+    from,
+    to,
+    ...props
+} : RandomTriangleProps) => <polygon points={`0,1 1,1 1,${from + (to - from) * Math.random()}`} {...props}/>;
+
+const RandomTriangle = (props : RandomTriangleProps) => (Math.random() > 0.5
     ? RandomLeftTriangle
     : RandomRightTriangle)(props);

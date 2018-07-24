@@ -59,7 +59,7 @@
     "whatwg-fetch": "2.0.3"
   },
   "scripts": {
-    "start": "node scripts/start.js",
+    "start": "nodemon --watch config/webpack.config.*.js --exec node scripts/start.js",
     "build": "node scripts/build.js",
     "test": "node scripts/test.js --env=jsdom"
   },
@@ -80,7 +80,9 @@
     "@types/recompose": "^0.26.1",
     "@types/redux-logger": "^3.0.6",
     "markdown-it": "^8.4.2",
+    "node-sass": "^4.9.2",
     "postcss-css-variables": "^0.9.0",
+    "sass-loader": "^7.0.3",
     "typescript": "^2.8.3",
     "typings-for-css-modules-loader": "^1.7.0"
   },

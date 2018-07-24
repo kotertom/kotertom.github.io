@@ -72,8 +72,8 @@ module.exports = {
   },
   resolve: {
     // This allows you to set a fallback for where Webpack should look for modules.
-    // We placed these paths second because we want `node_modules` to "win" if
-    // there are any conflicts. This matches Node resolution mechanism.
+    // We placed these paths second because we want `node_modules` to "win" if there
+    // are any conflicts. This matches Node resolution mechanism.
     // https://github.com/facebookincubator/create-react-app/issues/253
     modules: ['node_modules', paths.appNodeModules].concat(
     // It is guaranteed to exist because we tweak it in `env.js`
@@ -188,7 +188,6 @@ module.exports = {
                   ident: 'postcss',
                   plugins: () => [
                     require('postcss-flexbugs-fixes'),
-                    require('postcss-css-variables'),
                     autoprefixer({
                       browsers: [
                         '>1%', 'last 4 versions', 'Firefox ESR', 'not ie < 9',
@@ -196,7 +195,8 @@ module.exports = {
                       ],
                       flexbox: 'no-2009'
                     }),
-                    require('postcss-nested')
+                    require('postcss-nested'),
+                    require('postcss-css-variables')
                   ]
                 }
               }
@@ -209,6 +209,30 @@ module.exports = {
               // autoprefixer({         browsers: [           '>1%', 'last 4 versions',
               // 'Firefox ESR', 'not ie < 9', // React doesn't support IE8 anyway         ],
               // flexbox: 'no-2009'       })     ]   } }
+            ]
+          }, {
+            test: /\.s(c|a)ss$/,
+            use: [
+              'style-loader', 'typings-for-css-modules-loader?modules&namedExport&camelCase&localIdentName=[pat' +
+                  'h][name]__[local]--[hash:base64:5]', {
+                loader: 'postcss-loader',
+                options: {
+                  // Necessary for external CSS imports to work
+                  // https://github.com/facebookincubator/create-react-app/issues/2677
+                  ident: 'postcss',
+                  plugins: () => [
+                    require('postcss-flexbugs-fixes'),
+                    autoprefixer({
+                      browsers: [
+                        '>1%', 'last 4 versions', 'Firefox ESR', 'not ie < 9',
+                        // React doesn't support IE8 anyway
+                      ],
+                      flexbox: 'no-2009'
+                    })
+                  ]
+                }
+              },
+              'sass-loader'
             ]
           },
           // "file" loader makes sure those assets get served by WebpackDevServer. When

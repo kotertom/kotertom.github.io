@@ -47,5 +47,13 @@ export const projects : ProjectDescription[] = [
             type: 'youtube'
         },
         title: 'Vis VR'
+    }, {
+        description: `VR app exploring different methods of data visualization.`,
+        link: 'github.com/kotertom',
+        media: {
+            id: 'ao1eHQNOcF0',
+            type: 'youtube'
+        },
+        title: 'Vis VR'
     }
 ];
