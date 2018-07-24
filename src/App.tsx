@@ -138,7 +138,7 @@ const ProjectShowcase = (props : ProjectShowcaseProps) => (
     </div>
     <div className={style.cProjectShowcaseContent}>
       {/* image / video */}
-      <PromoMedia media={props.media} className={style.cProjectShowcaseLink}/>
+      <PromoMedia media={props.media} className={style.cProjectShowcaseMedia}/>
     </div>
   </div>
 );

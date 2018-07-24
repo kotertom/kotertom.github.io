@@ -1,5 +1,5 @@
-import githubMark from './GitHub-Mark-120px-plus.png';
-import gitlabLogo from './gitlab-logo-square.png';
+import githubMark from './img/GitHub-Mark-120px-plus.png';
+import gitlabLogo from './img/gitlab-logo-square.png';
 
 export const socialMediaDefs = [
     {
@@ -11,7 +11,7 @@ export const socialMediaDefs = [
     }
 ];
 
-export const bio = ["computer science graduate", "rustacean", "small, focused CLI tool enthusiast", "haskeller", "computer graphics <3"];
+export const bio = ["rustacean", "small, focused CLI tool enthusiast", "haskeller", "computer graphics \u{1F49C}"];
 
 export const sections = [
     {
