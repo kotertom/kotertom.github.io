@@ -87,6 +87,9 @@ module.exports = {
     // there are any conflicts. This matches Node resolution mechanism.
     // https://github.com/facebookincubator/create-react-app/issues/253
     modules: ['node_modules', paths.appNodeModules].concat(
+      // It is guaranteed to exist because we tweak it in `env.js`
+      process.env.NODE_PATH.split(path.delimiter).filter(Boolean)
+),
     // It is guaranteed to exist because we tweak it in `env.js`process. env.
     // NODE_PATH. split(path. delimiter).filter(Boolean)), These are the reasonable
     // defaults supported by the Node ecosystem. We also include JSX as a common
@@ -185,31 +188,64 @@ module.exports = {
           // code so CSS from them won't be in the main CSS file.
           {
             test: /\.css$/,
-            loader: ExtractTextPlugin.extract(Object.assign({
-              fallback: {
-                loader: require.resolve('style-loader'),
+            use: [
+              {
+                loader: 'style-loader'
+              }, {
+                loader: 'typings-for-css-modules-loader?modules&namedExport&camelCase'
+              }, {
+                loader: 'postcss-loader',
                 options: {
-                  hmr: false
+                  // Necessary for external CSS imports to work
+                  // https://github.com/facebookincubator/create-react-app/issues/2677
+                  ident: 'postcss',
+                  plugins: () => [
+                    require('postcss-flexbugs-fixes'),
+                    autoprefixer({
+                      browsers: [
+                        '>1%', 'last 4 versions', 'Firefox ESR', 'not ie < 9',
+                        // React doesn't support IE8 anyway
+                      ],
+                      flexbox: 'no-2009'
+                    }),
+                    require('postcss-nested'),
+                    require('postcss-css-variables')
+                  ]
+                }
+              }
+              // require.resolve('style-loader'), {   loader: require.resolve('css-loader'),
+              // options: {     importLoaders: 1,     modules: true   } }, {   loader:
+              // require.resolve('postcss-loader'),   options: {     // Necessary for external
+              // CSS imports to work     //
+              // https://github.com/facebookincubator/create-react-app/issues/2677     ident:
+              // 'postcss',     plugins: () => [       require('postcss-flexbugs-fixes'),
+              // autoprefixer({         browsers: [           '>1%', 'last 4 versions',
+              // 'Firefox ESR', 'not ie < 9', // React doesn't support IE8 anyway         ],
+              // flexbox: 'no-2009'       })     ]   } }
+            ]
+          }, {
+            test: /\.s(c|a)ss$/,
+            use: [
+              'style-loader', 'typings-for-css-modules-loader?modules&namedExport&camelCase', {
+                loader: 'postcss-loader',
+                options: {
+                  // Necessary for external CSS imports to work
+                  // https://github.com/facebookincubator/create-react-app/issues/2677
+                  ident: 'postcss',
+                  plugins: () => [
+                    require('postcss-flexbugs-fixes'),
+                    autoprefixer({
+                      browsers: [
+                        '>1%', 'last 4 versions', 'Firefox ESR', 'not ie < 9',
+                        // React doesn't support IE8 anyway
+                      ],
+                      flexbox: 'no-2009'
+                    })
+                  ]
                 }
               },
-              use: [
-                {
-                  loader: 'style-loader'
-                }, {
-                  loader: 'typings-for-css-modules-loader?modules&namedExport&camelCase'
-                },
-                // {loader: require. resolve('css-loader'),options: { importLoaders: 1,
-                // minimize: true, modules: true, sourceMap: shouldUseSourceMap   } }, { loader:
-                // require. resolve('postcss-loader'),options: {     // Necessary for external
-                // CSS imports to work     //
-                // https://github.com/facebookincubator/create-react-app/issues/2677     ident:
-                // 'postcss', plugins: () =>[       require('postcss-flexbugs-fixes'),
-                // autoprefixer({         browsers: [           '>1%', 'last 4 versions',
-                // 'Firefox ESR', 'not ie < 9', // React doesn't support IE8 anyway
-                // ],flexbox: 'no-2009'       })     ]   } }
-              ]
-            }, extractTextPluginOptions)),
-            // Note: this won't work without `new ExtractTextPlugin()` in `plugins`.
+              'sass-loader'
+            ]
           },
           // "file" loader makes sure assets end up in the `build` folder. When you
           // `import` an asset, you get its filename. This loader doesn't use a "test" so

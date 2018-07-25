@@ -2,6 +2,7 @@
   "name": "kotertom.github.io-ts",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://kotertom.github.io",
   "dependencies": {
     "autoprefixer": "^7.1.6",
     "babel-jest": "^22.1.0",
@@ -60,7 +61,9 @@
   "scripts": {
     "start": "nodemon --watch config -w tsconfig.json -w tslint.json --exec node scripts/start.js",
     "build": "node scripts/build.js",
-    "test": "node scripts/test.js --env=jsdom"
+    "test": "node scripts/test.js --env=jsdom",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "devDependencies": {
     "@types/classnames": "^2.2.5",
@@ -79,6 +82,7 @@
     "@types/react-router-dom": "^4.3.0",
     "@types/react-scroll": "^1.5.3",
     "@types/recompose": "^0.26.1",
+    "gh-pages": "^1.2.0",
     "markdown-it": "^8.4.2",
     "node-sass": "^4.9.2",
     "postcss-css-variables": "^0.9.0",

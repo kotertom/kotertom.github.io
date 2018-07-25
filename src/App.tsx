@@ -4,8 +4,6 @@ import * as React from 'react';
 import {Route, Switch} from 'react-router-dom';
 import {Link} from 'react-scroll';
 
-import * as fetch from 'isomorphic-fetch';
-import { branch, compose, lifecycle, mapProps, renderComponent, withHandlers, withState, withStateHandlers } from 'recompose';
 import * as style from './App.scss';
 import { Content, ProjectDescription} from './content';
 import {IrregularBox} from './IrregularBox';
