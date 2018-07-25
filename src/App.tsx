@@ -150,7 +150,7 @@ const ProjectShowcase =
       {/* title + repo link + description */}
         <h1 className={style.cProjectShowcaseTitle}>
           {props.title}
-          <span><a className={style.cProjectShowcaseLink} href={props.link}>{props.link}</a></span>
+  <span><a className={style.cProjectShowcaseLink} href={props.link}>{props.link.replace(/^.*:\/\/www\./, '')}</a></span>
         </h1>
       
         <hr className={style.cProjectShowcaseSeparator}/>

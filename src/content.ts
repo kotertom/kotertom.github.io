@@ -24,52 +24,53 @@ export const sections = [
 ];
 
 export interface YouTube {
-    type : "youtube";
-    id : string;
+    type: "youtube";
+    id: string;
 }
 
 export interface Image {
-    type : "image";
-    src : string;
-    altText : string;
+    type: "image";
+    src: string;
+    altText: string;
 }
 
 export type PromoMediaType = YouTube | Image;
 
 export interface ProjectDescription {
-    title : string;
-    link : string;
-    description : string;
-    media : PromoMediaType;
+    title: string;
+    link: string;
+    description: string;
+    media: PromoMediaType;
 }
-export const projects : ProjectDescription[] = [
+// tslint:disable:object-literal-sort-keys
+export const projects: ProjectDescription[] = [
     {
-        description: `VR app exploring different methods of data visualization.`,
-        link: "github.com/kotertom",
+        title: "Vis VR",
+        link: "https://www.github.com/kotertom",
+        description: `VR app exploring different methods of data visualization. Written in a team of 3 as bachelor's thesis. Made in Unity`,
         media: {
             id: "ao1eHQNOcF0",
             type: "youtube"
-        },
-        title: "Vis VR"
+        }
     }, {
-        description: `VR app exploring different methods of data visualization.`,
-        link: "github.com/kotertom",
+        title: "Cyberracing",
+        link: "https://www.github.com/kotertom/cyberracing",
+        description: `Simple game engine bundled with a demo written in JS ES5 (no npm, webpack et al.) + WebGL + rudimentary HTML and CSS. Heavily inspired by Unity's component system.`,
         media: {
-            id: "ao1eHQNOcF0",
-            type: "youtube"
-        },
-        title: "Vis VR"
+            type: "youtube",
+            id: "3SlY5DmH-xQ"
+        }
     }
 ];
 
 export interface Content {
-    projects : ProjectDescription[];
-    bio : string[];
-    socialMedia : Array < {
+    projects: ProjectDescription[];
+    bio: string[];
+    socialMedia: Array < {
         image: string;
         link: string;
     } >;
-    sections : Array < {
+    sections: Array < {
         text: string;
     } >;
 }
