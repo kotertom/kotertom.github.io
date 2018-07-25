@@ -43,8 +43,7 @@ export const IrregularBox = ({
 type RandomTriangleProps = {
     from: number,
     to: number
-} & React.DetailedHTMLProps < React.SVGAttributes < SVGPolygonElement >,
-SVGPolygonElement >;
+} & React.SVGProps<SVGPolygonElement>;
 
 const RandomLeftTriangle = ({
     from,

@@ -9,6 +9,7 @@
   },
   "rules": {
     "jsx-boolean-value": "never",
-    "interface-name": false
+    "interface-name": false,
+    "jsx-no-lambda": false
   }
 }

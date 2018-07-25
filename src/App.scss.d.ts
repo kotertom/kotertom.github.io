@@ -20,3 +20,4 @@ export const cProjectShowcaseSeparator: string;
 export const cProjectShowcaseLink: string;
 export const cProjectShowcaseDescription: string;
 export const cProjectShowcaseMedia: string;
+export const cFooter: string;
