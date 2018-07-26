@@ -1,0 +1,23 @@
+bio:
+  - "computer science graduate"
+  - "rustacean"
+  - "small, focused CLI tool enthusiast"
+  - "haskeller"
+  - "computer graphics <3"
+
+sections:
+  - "projects"
+
+socialMedia:
+  - link: "https://www.github.com/kotertom"
+    image: "./GitHub-Mark-120px-plus.png"
+  - link: "https://www.gitlab.com/kotertom"
+    image: "./gitlab-logo-square.png"
+
+projects:
+  - title: "Vis VR"
+    description: "VR app exploring different methods of data visualization."
+    link: "github.com/kotertom"
+    media: 
+      id: "ao1eHQNOcF0"
+      type: "youtube"
