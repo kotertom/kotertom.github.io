@@ -2,6 +2,7 @@ import githubMark from "./img/GitHub-Mark-120px-plus.png";
 import gitlabLogo from "./img/gitlab-logo-square.png";
 import linkedinMark from "./img/In-2C-128px-TM.png";
 
+
 export const socialMedia = [
     {
         image: githubMark,
@@ -15,7 +16,13 @@ export const socialMedia = [
     }
 ];
 
-export const bio = ["rustacean", "small, focused CLI tool enthusiast", "haskeller", "computer graphics \u{1F49C}"];
+export const bio = [
+    "rustacean",
+    "likes JS in any form: fried, baked or boiled", 
+    "small, focused CLI tool enthusiast", 
+    "haskeller", 
+    "computer graphics \u{1F49C}"
+];
 
 export const sections = [
     {
@@ -24,26 +31,26 @@ export const sections = [
 ];
 
 export interface YouTube {
-    type: "youtube";
-    id: string;
+    type : "youtube";
+    id : string;
 }
 
 export interface Image {
-    type: "image";
-    src: string;
-    altText: string;
+    type : "image";
+    src : string;
+    altText : string;
 }
 
 export type PromoMediaType = YouTube | Image;
 
 export interface ProjectDescription {
-    title: string;
-    link: string;
-    description: string;
-    media: PromoMediaType;
+    title : string;
+    link : string;
+    description : string;
+    media : PromoMediaType;
 }
 // tslint:disable:object-literal-sort-keys
-export const projects: ProjectDescription[] = [
+export const projects : ProjectDescription[] = [
     {
         title: "Vis VR",
         link: "",
@@ -73,13 +80,13 @@ export const projects: ProjectDescription[] = [
 ];
 
 export interface Content {
-    projects: ProjectDescription[];
-    bio: string[];
-    socialMedia: Array < {
+    projects : ProjectDescription[];
+    bio : string[];
+    socialMedia : Array < {
         image: string;
         link: string;
     } >;
-    sections: Array < {
+    sections : Array < {
         text: string;
     } >;
 }
