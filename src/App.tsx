@@ -26,6 +26,7 @@ const join = (items : Array < JSX.Element | string >, connector : JSX.Element | 
 // non-breaking whitespace character
 const nbsp = '\xa0';
 
+// main app component
 interface AppProps {content: Content}
 const App = ({content} : AppProps) => (
   <div className={style.lRoot}>
@@ -63,6 +64,7 @@ export default App;
 
 
 
+// button for social media links, e.g. github, gitlab, linkedin
 interface ISocialMediaButtonProps {
   image : any;
   link : string;
@@ -73,11 +75,14 @@ const SocialMediaButton = (props : ISocialMediaButtonProps) => (
   </a>
 );
 
+
+// as soon as there are more things I do, I'm planning to add sections like
+// 'code', '3d modelling' etc.
 interface ISectionButtonProps {
   text : string;
 }
 const SectionButton = (props : ISectionButtonProps) => (
-  <Link to="current-section" smooth={true}>
+  <Link to="current-section" smooth={true} className={style.cSectionsAnchor}>
     <button className={style.cSectionsButton}>{props.text}</button>
   </Link>
 );

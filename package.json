@@ -62,7 +62,6 @@
     "start": "nodemon --watch config -w tsconfig.json -w tslint.json --exec node scripts/start.js",
     "build": "node scripts/build.js",
     "test": "node scripts/test.js --env=jsdom",
-    "predeploy": "npm run build",
     "deploy": "gh-pages -b master -d build"
   },
   "devDependencies": {

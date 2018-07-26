@@ -7,6 +7,7 @@ export const cButtonGroup: string;
 export const cSocialMedia: string;
 export const cSocialMediaButton: string;
 export const cSections: string;
+export const cSectionsAnchor: string;
 export const cSectionsButton: string;
 export const cVdots: string;
 export const cCurrentSection: string;

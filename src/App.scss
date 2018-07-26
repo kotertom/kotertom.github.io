@@ -73,7 +73,15 @@ $media-mobile: only screen and (max-width: 1200px);
 }
 
 .c-sections {
-    margin-top: 10vh;
+    margin-top: 5vh;
+    &__anchor {
+        padding: {
+            left: 5vw;
+            right: 5vw;
+            top: 5vh;
+            bottom: 5vh;
+        }
+    }
     &__button {
         min-width: 300px;
         font-variant: small-caps;
@@ -216,7 +224,7 @@ $media-mobile: only screen and (max-width: 1200px);
     height: 10vh;
 }
 
-:global(.block-embed-service-youtube),
-:global(.block-embed-service-youtube > iframe) {
+:global(.block-embed-service-youtube > iframe),
+:global(.block-embed-service-youtube) {
     width: 100%;
 }

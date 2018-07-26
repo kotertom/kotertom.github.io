@@ -46,11 +46,20 @@ export interface ProjectDescription {
 export const projects: ProjectDescription[] = [
     {
         title: "Vis VR",
-        link: "https://www.github.com/kotertom",
-        description: `VR app exploring different methods of data visualization. Written in a team of 3 as bachelor's thesis. Made in Unity`,
+        link: "",
+        description: `VR app exploring different methods of data visualization. Written in a team of 3 as bachelor's thesis. Made in Unity.`,
         media: {
             id: "ao1eHQNOcF0",
             type: "youtube"
+        }
+    }, {
+        link: "https://www.github.com/kotertom/kotertom.github.io/tree/dev",
+        title: "This page \u{2014} kotertom.github.io",
+        description: `Made in Typescript, React and SASS.`,
+        media: {
+            type: "image",
+            src: "",
+            altText: ""
         }
     }, {
         title: "Cyberracing",
