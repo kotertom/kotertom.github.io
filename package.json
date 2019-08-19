@@ -1,0 +1,45 @@
+{
+  "name": "kotertom.github.io",
+  "version": "2.0.0",
+  "description": "Personal website https://kotertom.com",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kotertom/kotertom.github.io.git"
+  },
+  "author": "Tom Koter <kotertom@gmail.com> (https://kotertom.com)",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kotertom/kotertom.github.io/issues"
+  },
+  "homepage": "https://github.com/kotertom/kotertom.github.io#readme",
+  "scripts": {
+    "build": "gatsby build",
+    "deploy": "gh-pages -d deploy -b master",
+    "serve": "gatsby serve",
+    "start": "gatsby develop"
+  },
+  "volta": {
+    "node": "12.8.1"
+  },
+  "devDependencies": {
+    "@types/react": "16.9.2",
+    "@types/react-dom": "16.8.5",
+    "@types/react-helmet": "5.0.9",
+    "gatsby": "2.13.67",
+    "gatsby-plugin-manifest": "2.2.5",
+    "gatsby-plugin-react-helmet": "3.1.3",
+    "gatsby-plugin-sharp": "2.2.12",
+    "gatsby-plugin-typescript": "2.1.2",
+    "gatsby-plugin-typescript-checker": "1.1.1",
+    "gatsby-source-filesystem": "2.1.9",
+    "gatsby-transformer-sharp": "2.2.6",
+    "gh-pages": "2.1.1"
+  },
+  "dependencies": {
+    "gatsby-image": "2.2.8",
+    "react": "16.9.0",
+    "react-dom": "16.9.0",
+    "react-helmet": "5.2.1"
+  }
+}
