@@ -1,3 +1,6 @@
+/* eslint-disable @typescript-eslint/camelcase */
+/*eslint-env node*/
+
 module.exports = {
     plugins: [
         "gatsby-plugin-react-helmet",
@@ -21,5 +24,10 @@ module.exports = {
                 display: "minimal-ui",
             },
         },
+        "gatsby-plugin-eslint",
+        "gatsby-plugin-typescript",
+        "gatsby-plugin-typescript-checker",
+        "gatsby-plugin-styled-components",
+        "gatsby-plugin-react-axe",
     ],
 };

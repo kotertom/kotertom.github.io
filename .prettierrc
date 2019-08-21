@@ -6,6 +6,7 @@
   "tabWidth": 4,
   "jsxBracketSameLine": true,
   "endOfLine": "lf",
+  "semi": true,
   "overrides": [
     {
       "files": ["*.json", ".prettierrc", ".eslintrc", ".stylelintrc"],
