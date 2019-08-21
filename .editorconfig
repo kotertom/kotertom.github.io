@@ -7,5 +7,5 @@ charset = utf-8
 trim_trailing_whitespace = true
 insert_final_newline = true
 
-[*.json,.prettierrc,.eslintrc,.stylelintrc]
+[*.json,*.yml,.prettierrc,.eslintrc,.stylelintrc]
 indent_size = 2

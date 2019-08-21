@@ -1,6 +1,9 @@
 /* eslint-disable @typescript-eslint/camelcase */
 /*eslint-env node*/
 
+/**
+ * @type {import("gatsby").GatsbyConfig}
+ */
 module.exports = {
     plugins: [
         "gatsby-plugin-react-helmet",
@@ -22,6 +25,12 @@ module.exports = {
                 background_color: "#663399",
                 theme_color: "#663399",
                 display: "minimal-ui",
+            },
+        },
+        {
+            resolve: "gatsby-plugin-extract-schema",
+            options: {
+                dest: `${__dirname}/gql-schema.json`,
             },
         },
         "gatsby-plugin-eslint",

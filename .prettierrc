@@ -9,7 +9,7 @@
   "semi": true,
   "overrides": [
     {
-      "files": ["*.json", ".prettierrc", ".eslintrc", ".stylelintrc"],
+      "files": ["*.json", "*.yml", ".prettierrc", ".eslintrc", ".stylelintrc"],
       "options": {
         "tabWidth": 2
       }
