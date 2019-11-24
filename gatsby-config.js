@@ -14,7 +14,15 @@ module.exports = {
                 path: `${__dirname}/src/images`,
             },
         },
+        {
+            resolve: "gatsby-source-filesystem",
+            options: {
+                name: "content",
+                path: `${__dirname}/src/content`,
+            },
+        },
         "gatsby-transformer-sharp",
+        "gatsby-transformer-yaml",
         "gatsby-plugin-sharp",
         {
             resolve: "gatsby-plugin-manifest",
@@ -36,7 +44,7 @@ module.exports = {
         "gatsby-plugin-eslint",
         "gatsby-plugin-typescript",
         "gatsby-plugin-typescript-checker",
-        "gatsby-plugin-styled-components",
         "gatsby-plugin-react-axe",
+        "gatsby-plugin-linaria",
     ],
 };

@@ -1,12 +1,10 @@
 import React, { FunctionComponent } from "react";
 import Helmet from "react-helmet";
-import GlobalStyle from "./global-style";
+import "./global-styles";
 
-export type HeadProps = {
-    title?: string;
-};
+export type HeadProps = {};
 
-const Head: FunctionComponent<HeadProps> = ({ children, title = "" }) => {
+const Head: FunctionComponent<HeadProps> = ({ children }) => {
     // const data = useStaticQuery(graphql`
     //     query {
 
@@ -14,12 +12,11 @@ const Head: FunctionComponent<HeadProps> = ({ children, title = "" }) => {
     // `);
     return (
         <Helmet>
-            <title>{}</title>
+            <title>kotertom | web dev</title>
             <link
                 href="https://fonts.googleapis.com/css?family=Lato:300,400&display=swap&subset=latin-ext"
                 rel="stylesheet"
             />
-            <GlobalStyle />
             {children}
         </Helmet>
     );

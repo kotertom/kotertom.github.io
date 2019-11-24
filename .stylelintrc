@@ -1,46 +1,34 @@
 {
-  "plugins": ["stylelint-prettier", "stylelint-order", "stylelint-config-rational-order/plugin"],
+  "plugins": [
+    "stylelint-prettier",
+    "stylelint-order",
+    "stylelint-config-rational-order/plugin"
+  ],
   "rules": {
     "prettier/prettier": true,
-
     "length-zero-no-unit": true,
-
     "shorthand-property-no-redundant-values": true,
     "declaration-block-no-shorthand-property-overrides": true,
-
     "order/order": [
-      "custom-properties",
-      "dollar-variables",
+      [
+        "custom-properties",
+        "dollar-variables",
+        {
+          "type": "at-rule",
+          "name": "extend"
+        },
+        "declarations",
+        "rules",
+        {
+          "type": "at-rule",
+          "name": "media"
+        }
+      ],
       {
-        "type": "at-rule",
-        "name": "extend"
-      },
-      {
-        "type": "at-rule",
-        "name": "include",
-        "hasBlock": false
-      },
-      {
-        "type": "at-rule",
-        "name": "mixin",
-        "hasBlock": false
-      },
-      "declarations",
-      {
-        "type": "at-rule",
-        "name": "include",
-        "hasBlock": true
-      },
-      {
-        "type": "at-rule",
-        "name": "mixin",
-        "hasBlock": true
-      },
-      "rules",
-      "at-rules"
+        "unspecified": "ignore"
+      }
     ],
     "order/properties-order": [],
-
     "plugin/rational-order": [
       true,
       {
