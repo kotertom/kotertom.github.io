@@ -1,19 +1,10 @@
 {
-  "printWidth": 120,
-  "useTabs": false,
-  "arrowParens": "avoid",
-  "trailingComma": "all",
-  "tabWidth": 4,
-  "jsxBracketSameLine": true,
-  "endOfLine": "lf",
-  "semi": true,
-  "overrides": [
-    {
-      "files": ["*.json", "*.yml", ".prettierrc", ".eslintrc", ".stylelintrc"],
-      "options": {
-        "tabWidth": 2
-      }
-    }
-  ],
-  "proseWrap": "always"
+	"printWidth": 120,
+	"useTabs": true,
+	"arrowParens": "avoid",
+	"trailingComma": "all",
+	"jsxBracketSameLine": false,
+	"endOfLine": "lf",
+	"semi": true,
+	"proseWrap": "always"
 }

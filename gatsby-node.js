@@ -3,11 +3,11 @@
 const { TsconfigPathsPlugin } = require("tsconfig-paths-webpack-plugin");
 
 exports.onCreateWebpackConfig = ({ actions }) => {
-    const { setWebpackConfig } = actions;
+	const { setWebpackConfig } = actions;
 
-    setWebpackConfig({
-        resolve: {
-            plugins: [new TsconfigPathsPlugin()],
-        },
-    });
+	setWebpackConfig({
+		resolve: {
+			plugins: [new TsconfigPathsPlugin()],
+		},
+	});
 };

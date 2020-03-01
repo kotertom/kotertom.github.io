@@ -1,40 +1,49 @@
 {
-  "plugins": [
-    "stylelint-prettier",
-    "stylelint-order",
-    "stylelint-config-rational-order/plugin"
-  ],
-  "rules": {
-    "prettier/prettier": true,
-    "length-zero-no-unit": true,
-    "shorthand-property-no-redundant-values": true,
-    "declaration-block-no-shorthand-property-overrides": true,
-    "order/order": [
-      [
-        "custom-properties",
-        "dollar-variables",
-        {
-          "type": "at-rule",
-          "name": "extend"
-        },
-        "declarations",
-        "rules",
-        {
-          "type": "at-rule",
-          "name": "media"
-        }
-      ],
-      {
-        "unspecified": "ignore"
-      }
-    ],
-    "order/properties-order": [],
-    "plugin/rational-order": [
-      true,
-      {
-        "border-in-box-model": false,
-        "empty-line-between-groups": true
-      }
-    ]
-  }
+	"plugins": [
+		"stylelint-config-recommended",
+		"stylelint-prettier",
+		"stylelint-order",
+		"stylelint-config-rational-order/plugin"
+	],
+	"rules": {
+		"at-rule-no-unknown": [
+			true,
+			{
+				"ignoreAtRules": [
+					"tailwind"
+				]
+			}
+		],
+		"prettier/prettier": true,
+		"length-zero-no-unit": true,
+		"shorthand-property-no-redundant-values": true,
+		"declaration-block-no-shorthand-property-overrides": true,
+		"order/order": [
+			[
+				"custom-properties",
+				"dollar-variables",
+				{
+					"type": "at-rule",
+					"name": "extend"
+				},
+				"declarations",
+				"rules",
+				{
+					"type": "at-rule",
+					"name": "media"
+				}
+			],
+			{
+				"unspecified": "ignore"
+			}
+		],
+		"order/properties-order": [],
+		"plugin/rational-order": [
+			true,
+			{
+				"border-in-box-model": false,
+				"empty-line-between-groups": true
+			}
+		]
+	}
 }
